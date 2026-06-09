@@ -1,0 +1,48 @@
+# KiCad generated/local files
+fp-info-cache
+*.kicad_prl
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.kicad_pro-bak
+*.bak
+*-backups/
+*.autosave
+*.lck
+
+# KiCad legacy/generated artifacts
+*-cache.lib
+*-rescue.lib
+*.net
+*.dsn
+*.ses
+
+# Fabrication/export outputs
+gerbers/
+gerber/
+fabrication/
+production/
+outputs/
+*.gbr
+*.drl
+*.pos
+*.rpt
+*.csv
+*.bom
+
+
+# STM32/C embedded build outputs
+build/
+Debug/
+Release/
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+*.o
+*.d
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
