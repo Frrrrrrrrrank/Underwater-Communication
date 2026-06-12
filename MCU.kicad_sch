@@ -11721,7 +11721,7 @@
 				)
 			)
 		)
-		(property "Value" "LED_Pink"
+		(property "Value" "LED_White"
 			(at 57.912 141.224 0)
 			(effects
 				(font
@@ -12668,7 +12668,7 @@
 				)
 			)
 		)
-		(property "Footprint" "0_RM2024:JUMPER_3_NODE"
+		(property "Footprint" "Connector_PinHeader_1.00mm:PinHeader_1x03_P1.00mm_Vertical"
 			(at 161.29 20.32 0)
 			(effects
 				(font
@@ -14233,7 +14233,7 @@
 				)
 			)
 		)
-		(property "Value" "LED_White"
+		(property "Value" "LED_Blue"
 			(at 57.404 145.034 0)
 			(effects
 				(font
@@ -15659,7 +15659,7 @@
 				)
 			)
 		)
-		(property "Value" "LED_Yellow"
+		(property "Value" "LED_Pink"
 			(at 57.658 150.622 0)
 			(effects
 				(font
@@ -17491,7 +17491,7 @@
 				)
 			)
 		)
-		(property "Value" "LED_Blue"
+		(property "Value" "LED_Yellow"
 			(at 57.15 138.684 0)
 			(effects
 				(font

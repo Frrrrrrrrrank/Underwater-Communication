@@ -420,6 +420,126 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Connector:TestPoint_Probe"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.762)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 1.651 5.842 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TestPoint_Probe"
+				(at 1.651 4.064 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "test point (alternative probe-style design)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "test point tp"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Pin* Test*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TestPoint_Probe_0_1"
+				(polyline
+					(pts
+						(xy 1.27 0.762) (xy 0 0) (xy 0.762 1.27) (xy 1.27 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.397 0.635) (xy 0.635 1.397) (xy 2.413 3.175) (xy 3.175 2.413) (xy 1.397 0.635)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "TestPoint_Probe_1_1"
+				(pin passive line
+					(at 0 0 90)
+					(length 0)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C"
 			(pin_numbers
 				(hide yes)
@@ -3052,6 +3172,12 @@
 		(uuid "27cc2b99-bb48-4528-b7b2-747fe5c1bf34")
 	)
 	(junction
+		(at 96.52 116.84)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "29d4ab81-63b0-44c4-84f6-3f4422247c60")
+	)
+	(junction
 		(at 162.56 68.58)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3094,6 +3220,12 @@
 		(uuid "55e7da26-a0a6-47f1-a76c-78c50b1e1731")
 	)
 	(junction
+		(at 158.75 135.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "55fb6173-7352-4fc7-a70c-9e111fb557f3")
+	)
+	(junction
 		(at 106.68 133.35)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3116,6 +3248,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "634e0541-76bf-465f-9ea0-6eae93daf106")
+	)
+	(junction
+		(at 146.05 83.82)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6a4046ee-e9e4-4158-a0fd-dad2ebb78ec0")
+	)
+	(junction
+		(at 231.14 60.96)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6d9b337e-e551-4316-97f3-c9c50d0df0ec")
 	)
 	(junction
 		(at 96.52 24.13)
@@ -3154,10 +3298,22 @@
 		(uuid "88815419-0f49-42db-8c7e-bd8bf4e38bc8")
 	)
 	(junction
+		(at 31.75 71.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "889ce2ca-0b05-466f-8190-4119a47bf102")
+	)
+	(junction
 		(at 74.93 135.89)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8c0934d5-aed2-4fe1-bd5b-d5a6627437a6")
+	)
+	(junction
+		(at 250.19 60.96)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9333c852-581a-4cf6-b101-bf6f25421d0d")
 	)
 	(junction
 		(at 184.15 68.58)
@@ -3170,6 +3326,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a14cc1b7-33ec-41b8-b6f9-47517ef0bb02")
+	)
+	(junction
+		(at 179.07 53.34)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a5f45fea-7087-4a86-b527-111d3f80db65")
 	)
 	(junction
 		(at 129.54 16.51)
@@ -3220,6 +3382,12 @@
 		(uuid "b9fd7540-e0b8-4687-a3a5-c1d7bcc6fe68")
 	)
 	(junction
+		(at 238.76 129.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bc582529-d71a-40d3-9336-150f3d7faf51")
+	)
+	(junction
 		(at 54.61 27.94)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3266,6 +3434,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d56f0b30-03b6-4ab0-98a4-cce8759a551a")
+	)
+	(junction
+		(at 34.29 130.81)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e1302b6d-295e-4f91-bd1e-383a89e55ddd")
 	)
 	(junction
 		(at 123.19 133.35)
@@ -3356,6 +3530,16 @@
 			(type default)
 		)
 		(uuid "0763e926-419d-4df5-8f2c-5a3d8e620592")
+	)
+	(wire
+		(pts
+			(xy 146.05 83.82) (xy 148.59 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08a32e1b-4030-4cc2-8e61-13701ed23075")
 	)
 	(wire
 		(pts
@@ -3459,7 +3643,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 116.84) (xy 45.72 116.84)
+			(xy 45.72 116.84) (xy 69.85 116.84)
 		)
 		(stroke
 			(width 0)
@@ -3469,7 +3653,7 @@
 	)
 	(wire
 		(pts
-			(xy 259.08 60.96) (xy 238.76 60.96)
+			(xy 259.08 60.96) (xy 250.19 60.96)
 		)
 		(stroke
 			(width 0)
@@ -3609,6 +3793,26 @@
 	)
 	(wire
 		(pts
+			(xy 24.13 71.12) (xy 31.75 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2fd3b35f-532b-4a92-b7e6-28f66f2ef875")
+	)
+	(wire
+		(pts
+			(xy 26.67 80.01) (xy 31.75 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "315fca43-56da-4f6b-91b1-71808b8c2c80")
+	)
+	(wire
+		(pts
 			(xy 62.23 170.18) (xy 59.69 170.18)
 		)
 		(stroke
@@ -3659,7 +3863,17 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 83.82) (xy 148.59 83.82)
+			(xy 179.07 53.34) (xy 184.15 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36967a5c-d41e-4536-89da-8dae644f962f")
+	)
+	(wire
+		(pts
+			(xy 135.89 83.82) (xy 146.05 83.82)
 		)
 		(stroke
 			(width 0)
@@ -3689,7 +3903,7 @@
 	)
 	(wire
 		(pts
-			(xy 35.56 130.81) (xy 31.75 130.81)
+			(xy 35.56 130.81) (xy 34.29 130.81)
 		)
 		(stroke
 			(width 0)
@@ -3799,7 +4013,7 @@
 	)
 	(wire
 		(pts
-			(xy 237.49 129.54) (xy 241.3 129.54)
+			(xy 237.49 129.54) (xy 238.76 129.54)
 		)
 		(stroke
 			(width 0)
@@ -3909,6 +4123,16 @@
 	)
 	(wire
 		(pts
+			(xy 34.29 130.81) (xy 31.75 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4e5d32c1-fda1-40e8-8198-9f450cc436fc")
+	)
+	(wire
+		(pts
 			(xy 95.25 60.96) (xy 95.25 63.5)
 		)
 		(stroke
@@ -3919,7 +4143,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 135.89) (xy 157.48 135.89)
+			(xy 162.56 135.89) (xy 158.75 135.89)
 		)
 		(stroke
 			(width 0)
@@ -4236,6 +4460,16 @@
 			(type default)
 		)
 		(uuid "87c9034a-88af-46f7-a38c-a640d77a1a89")
+	)
+	(wire
+		(pts
+			(xy 231.14 60.96) (xy 233.68 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87f1ab80-c015-4ae7-b8d2-dac8e4d9ebed")
 	)
 	(wire
 		(pts
@@ -4579,7 +4813,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 60.96) (xy 233.68 60.96)
+			(xy 226.06 60.96) (xy 231.14 60.96)
 		)
 		(stroke
 			(width 0)
@@ -4669,6 +4903,16 @@
 	)
 	(wire
 		(pts
+			(xy 250.19 60.96) (xy 238.76 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bcd86dee-1d1c-48e7-8571-28e94d351d19")
+	)
+	(wire
+		(pts
 			(xy 101.6 16.51) (xy 106.68 16.51)
 		)
 		(stroke
@@ -4739,7 +4983,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 53.34) (xy 184.15 53.34)
+			(xy 173.99 53.34) (xy 179.07 53.34)
 		)
 		(stroke
 			(width 0)
@@ -4899,6 +5143,26 @@
 	)
 	(wire
 		(pts
+			(xy 238.76 129.54) (xy 241.3 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eb1350a6-008c-4c2c-ade2-c5f3554a2aaf")
+	)
+	(wire
+		(pts
+			(xy 31.75 80.01) (xy 31.75 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ebda46fb-0191-4578-9210-4e52cb8ef43e")
+	)
+	(wire
+		(pts
 			(xy 134.62 25.4) (xy 134.62 24.13)
 		)
 		(stroke
@@ -5016,6 +5280,16 @@
 			(type default)
 		)
 		(uuid "fdaf5b57-0f21-46c8-b6b7-161f5f1ad3d7")
+	)
+	(wire
+		(pts
+			(xy 158.75 135.89) (xy 157.48 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff109255-2206-4352-9bcb-403b9bb64192")
 	)
 	(label "GVDD"
 		(at 46.99 22.86 180)
@@ -5335,7 +5609,7 @@
 	)
 	(global_label "MCU_Transmit"
 		(shape input)
-		(at 31.75 71.12 180)
+		(at 24.13 71.12 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5345,7 +5619,7 @@
 		)
 		(uuid "84020fb8-23eb-489a-94a0-3cc0502898b4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 15.6416 71.12 0)
+			(at 8.0216 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5709,7 +5983,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 218.44 59.9948 0)
 			(effects
 				(font
@@ -6278,6 +6552,70 @@
 			(project "underwaterCom"
 				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
 					(reference "#PWR0108")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 250.19 60.96 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1a3ff38e-8dc6-4978-82dd-323e011e2891")
+		(property "Reference" "TP10"
+			(at 255.7145 56.5785 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 255.524 54.356 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 255.27 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 255.27 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 250.19 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "aa772185-9373-44f1-abb9-54c464cad349")
+		)
+		(instances
+			(project "underwaterCom"
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP10")
 					(unit 1)
 				)
 			)
@@ -7347,6 +7685,70 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 146.05 83.82 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "348654f1-7d1d-412c-8741-a56479200bc7")
+		(property "Reference" "TP8"
+			(at 142.748 76.962 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 142.748 78.74 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 146.05 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 146.05 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 146.05 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "568fc8a4-01ef-4886-b769-e6eb1435137e")
+		)
+		(instances
+			(project "underwaterCom"
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 46.99 63.5 270)
 		(unit 1)
@@ -7883,6 +8285,134 @@
 			(project ""
 				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
 					(reference "U5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 34.29 130.81 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4137275a-d0bf-4bab-9445-b3c27eae0a1d")
+		(property "Reference" "TP2"
+			(at 23.622 125.984 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 23.622 127.762 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 34.29 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 34.29 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 34.29 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "752f3bb2-690f-4f40-bb3e-13d59203542e")
+		)
+		(instances
+			(project ""
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 238.76 129.54 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "41a30fe7-deb5-4e69-aeac-f3cd204fcd64")
+		(property "Reference" "TP5"
+			(at 236.982 123.19 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 236.982 124.968 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 238.76 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 238.76 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 238.76 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f39eb87d-61a2-4de4-9a46-691f0ff2e84d")
+		)
+		(instances
+			(project "underwaterCom"
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP5")
 					(unit 1)
 				)
 			)
@@ -10083,6 +10613,70 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 96.52 116.84 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7624970f-5ab1-4bdf-829f-8ed73a3ae71f")
+		(property "Reference" "TP3"
+			(at 85.852 112.014 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 85.852 113.792 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 96.52 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 96.52 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 96.52 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7eae6452-3660-4571-8383-00a81d208299")
+		)
+		(instances
+			(project "underwaterCom"
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 140.97 148.59 270)
 		(unit 1)
@@ -11744,6 +12338,70 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 231.14 60.96 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a8174342-ccc0-4bcf-b779-b2afcde4f101")
+		(property "Reference" "TP9"
+			(at 227.838 54.864 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 227.838 56.642 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 231.14 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 231.14 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 231.14 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "22e85d93-fe11-430f-98f4-cb1ba2e0882d")
+		)
+		(instances
+			(project "underwaterCom"
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 173.99 60.96 0)
 		(unit 1)
@@ -12068,6 +12726,70 @@
 			(project ""
 				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
 					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 158.75 135.89 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b2adf8de-fbbd-414f-8a25-4cdb28b56220")
+		(property "Reference" "TP4"
+			(at 164.846 130.048 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 166.116 131.318 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 163.83 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 163.83 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 158.75 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e80c2091-4893-40ff-b2b8-23afbfd5e55b")
+		)
+		(instances
+			(project "underwaterCom"
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -13096,7 +13818,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 218.44 76.5048 0)
 			(effects
 				(font
@@ -13133,6 +13855,70 @@
 			(project "underwaterCom"
 				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
 					(reference "C38")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 179.07 53.34 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cb1c368d-ea05-4ef2-87be-03a9f4ee2f6d")
+		(property "Reference" "TP6"
+			(at 168.402 48.514 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 168.402 50.292 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 179.07 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 179.07 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 179.07 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7faaa977-4e0b-4665-ad3e-70b1c3867f76")
+		)
+		(instances
+			(project "underwaterCom"
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP6")
 					(unit 1)
 				)
 			)
@@ -14603,6 +15389,70 @@
 			(project "underwaterCom"
 				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
 					(reference "R17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 26.67 80.01 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f76eb96c-51fb-485c-9c84-7d769cd4fc78")
+		(property "Reference" "TP7"
+			(at 16.002 75.184 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 16.002 76.962 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RM25:Testpoint_1.2_0.8"
+			(at 26.67 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 26.67 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 26.67 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e1d40516-135f-4d84-9720-d386fa8ccd54")
+		)
+		(instances
+			(project "underwaterCom"
+				(path "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4"
+					(reference "TP7")
 					(unit 1)
 				)
 			)
