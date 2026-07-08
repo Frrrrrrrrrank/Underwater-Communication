@@ -1,0 +1,589 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-07-02T18:44:26+0800",
+    "kicad_version": "9.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5",
+            "violations": []
+        },
+        {
+            "path": "/Power/",
+            "uuid_path": "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/18f382f7-1cc2-4eef-af2c-c3294a22fd44",
+            "violations": [
+                {
+                    "description": "当前配置不包含符号库 'RM24'",
+                    "items": [
+                        {
+                            "description": "符号 U2 [SY8301]",
+                            "pos": {
+                                "x": 0.5715,
+                                "y": 0.3429
+                            },
+                            "uuid": "6f2fb00f-12de-4cb2-a0da-57590251b43b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        },
+        {
+            "path": "/MCU/",
+            "uuid_path": "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/b5ba1532-52ba-4fb1-ab3f-7bcc167e6846",
+            "violations": [
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR088 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 1.805469,
+                                "y": 0.407332
+                            },
+                            "uuid": "25dafa50-12e3-4d13-8dc4-b99a4a26e09a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "当前配置不包含符号库 'AEX7 Others'",
+                    "items": [
+                        {
+                            "description": "符号 U9 [TPD4E1U06DCKR]",
+                            "pos": {
+                                "x": 1.8923,
+                                "y": 1.1811
+                            },
+                            "uuid": "5a42f899-89a9-4b0c-a234-8f2ccf88c287"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "水平线, 长度 0.0284 mm",
+                            "pos": {
+                                "x": 1.6764,
+                                "y": 0.483532
+                            },
+                            "uuid": "7ca9dac0-84a0-4512-b7b2-041fd07bcfa6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "垂直线, 长度 0.0009 mm",
+                            "pos": {
+                                "x": 1.6764,
+                                "y": 0.4826
+                            },
+                            "uuid": "a3380166-cf58-4060-8a58-05dbbfc14c36"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "Symbol R55 引脚 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.805469,
+                                "y": 0.483532
+                            },
+                            "uuid": "8d169e3c-b6c7-4422-b513-7373c54402f6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "水平线, 长度 0.0459 mm",
+                            "pos": {
+                                "x": 1.851394,
+                                "y": 0.483532
+                            },
+                            "uuid": "068082ac-6148-478e-be1e-861baa92ceaa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号 'AO3400A' 与来源库 'Transistor_FET' 中的符号存在差异",
+                    "items": [
+                        {
+                            "description": "符号 Q1 [AO3400A]",
+                            "pos": {
+                                "x": 2.6162,
+                                "y": 1.27
+                            },
+                            "uuid": "411fd574-e028-41f6-8740-a0d2e5ffa2ca"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "符号 'D' 与来源库 'Device' 中的符号存在差异",
+                    "items": [
+                        {
+                            "description": "符号 D12 [D]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.1684
+                            },
+                            "uuid": "ae3f9c0e-bbf7-4cf3-928b-1edaefa03176"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "垂直线, 长度 0.0178 mm",
+                            "pos": {
+                                "x": 2.4892,
+                                "y": 1.143
+                            },
+                            "uuid": "3ad2fd9d-7f23-4ccd-a1b0-def71f362e91"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0162 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 2.4892,
+                                "y": 1.16078
+                            },
+                            "uuid": "fc7a8f10-02a1-486f-b800-2c7c787de750"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号 '+5V' 与来源库 'power' 中的符号存在差异",
+                    "items": [
+                        {
+                            "description": "符号 #PWR0166 [+5V]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.0668
+                            },
+                            "uuid": "bd738abb-39da-48f0-94d4-a47421ef5620"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "当前配置不包含符号库 'AEX7 Others'",
+                    "items": [
+                        {
+                            "description": "符号 U16 [CH343P]",
+                            "pos": {
+                                "x": 2.0193,
+                                "y": 0.8763
+                            },
+                            "uuid": "4639423f-cef1-42f3-b583-3df44162dca3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "符号 '+5V' 与来源库 'power' 中的符号存在差异",
+                    "items": [
+                        {
+                            "description": "符号 #PWR0277 [+5V]",
+                            "pos": {
+                                "x": 2.0828,
+                                "y": 1.1303
+                            },
+                            "uuid": "90fec055-c76c-4cb0-b8d6-d2869fa847fe"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "输入电源引脚不受任何输出电源引脚驱动",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.4445
+                            },
+                            "uuid": "6acb5a99-d2bc-4ad7-8032-94f6d967f3db"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "符号 'STM32G474RBTx' 与来源库 'MCU_ST_STM32G4' 中的符号存在差异",
+                    "items": [
+                        {
+                            "description": "符号 U3 [STM32G474RBTx]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.762
+                            },
+                            "uuid": "21a7f398-cd36-42f3-a10c-e04eda713909"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR087 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 1.647989,
+                                "y": 0.407332
+                            },
+                            "uuid": "a35f710c-69dc-41fe-879e-e0e2bf8c4e2c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "水平线, 长度 0.0025 mm",
+                            "pos": {
+                                "x": 1.581949,
+                                "y": 0.574972
+                            },
+                            "uuid": "a25e469d-51fb-4eb1-9f05-68814f53995d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "水平线, 长度 0.0889 mm",
+                            "pos": {
+                                "x": 1.581949,
+                                "y": 0.549572
+                            },
+                            "uuid": "c0b84286-2ce9-4097-a54d-a071fcd9470f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "Symbol J4 引脚 3 [Pin_3, Passive, Line]",
+                            "pos": {
+                                "x": 1.581949,
+                                "y": 0.549572
+                            },
+                            "uuid": "7ebbe24e-194c-4b72-8f79-4272ecc05d1f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号 '+5V' 与来源库 'power' 中的符号存在差异",
+                    "items": [
+                        {
+                            "description": "符号 #PWR066 [+5V]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 0.7874
+                            },
+                            "uuid": "1f05925b-ac95-48e9-a5a2-5d8058e1086f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "水平线, 长度 0.0025 mm",
+                            "pos": {
+                                "x": 1.581949,
+                                "y": 0.600372
+                            },
+                            "uuid": "377789d9-a4b6-42fd-8acd-8cde1e2d02ce"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "水平线, 长度 0.0889 mm",
+                            "pos": {
+                                "x": 1.581949,
+                                "y": 0.524172
+                            },
+                            "uuid": "7acaf150-9391-4fcf-aee6-ad181df8565a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "Symbol R54 引脚 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.647989,
+                                "y": 0.483532
+                            },
+                            "uuid": "57f76cfa-5d42-4994-b84a-c6b02825cdc2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR086 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 1.584489,
+                                "y": 0.600372
+                            },
+                            "uuid": "4b524c66-4538-4ed2-81c2-1f3cf4b2fe0d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "符号引脚或连线没有与栅格对齐",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR085 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 1.584489,
+                                "y": 0.574972
+                            },
+                            "uuid": "292e237b-0fdc-4731-b723-1704c7483ae1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                }
+            ]
+        },
+        {
+            "path": "/Amplifier/",
+            "uuid_path": "/d0e380c0-1a70-4c3e-a72e-c76200f7cbe5/465bcac7-f124-4e2f-8d20-22326acefcf4",
+            "violations": [
+                {
+                    "description": "输入电源引脚不受任何输出电源引脚驱动",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR045 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 0.8001,
+                                "y": 1.4097
+                            },
+                            "uuid": "897396b1-31e7-45b5-90d1-9b849ca9606b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "输入电源引脚不受任何输出电源引脚驱动",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR044 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 0.8001,
+                                "y": 1.2573
+                            },
+                            "uuid": "47cec054-e8d0-4963-8110-185bd23e67bf"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "输入电源引脚不受任何输出电源引脚驱动",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR017 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 0.4445,
+                                "y": 0.7366
+                            },
+                            "uuid": "6cfeb6b1-dda5-46d2-a68d-06f33b255652"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "OUTNL 和 OUTPL 都连接到同一项上; 将使用 OUTNL 作为网表中的网络名称",
+                    "items": [
+                        {
+                            "description": "标签 'OUTNL'",
+                            "pos": {
+                                "x": 1.0795,
+                                "y": 0.7366
+                            },
+                            "uuid": "6dd8b42d-d092-4abf-b3a7-bb396b4267c3"
+                        },
+                        {
+                            "description": "标签 'OUTPL'",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.5334
+                            },
+                            "uuid": "d4cd5083-55bc-4edb-ad63-dba5f81cf029"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                },
+                {
+                    "description": "类型为 Output 和 Output 的引脚已连接",
+                    "items": [
+                        {
+                            "description": "Symbol U5 引脚 27 [OUTNR, Output, Line]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.508
+                            },
+                            "uuid": "74469d54-f1f7-4838-bb0f-c60d8bc5ce20"
+                        },
+                        {
+                            "description": "Symbol U5 引脚 29 [OUTPR, Output, Line]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.5588
+                            },
+                            "uuid": "e6526bc0-f9cd-4b8a-9fcf-774f67aaf7a0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "类型为 Output 和 Output 的引脚已连接",
+                    "items": [
+                        {
+                            "description": "Symbol U5 引脚 21 [OUTNL, Output, Line]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.4826
+                            },
+                            "uuid": "015e2792-7167-4e60-b7b6-ce7e8b697785"
+                        },
+                        {
+                            "description": "Symbol U5 引脚 23 [OUTPL, Output, Line]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.5334
+                            },
+                            "uuid": "540e0420-9179-4594-afc6-4893ddaf5351"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "OUTNR 和 OUTPR 都连接到同一项上; 将使用 OUTNR 作为网表中的网络名称",
+                    "items": [
+                        {
+                            "description": "标签 'OUTNR'",
+                            "pos": {
+                                "x": 1.0795,
+                                "y": 0.6604
+                            },
+                            "uuid": "9547d924-49c0-499f-8d6b-0150874d055e"
+                        },
+                        {
+                            "description": "标签 'OUTPR'",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.5588
+                            },
+                            "uuid": "15dd2e0d-8089-47aa-b858-c744fbc1277e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                },
+                {
+                    "description": "输入电源引脚不受任何输出电源引脚驱动",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR039 引脚 1 [Power input, Line]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.2032
+                            },
+                            "uuid": "6b56e242-09c7-49a8-a2ae-d7e98d6d5019"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "输入电源引脚不受任何输出电源引脚驱动",
+                    "items": [
+                        {
+                            "description": "Symbol U5 引脚 7 [GVDD, Power input, Line]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 0.2286
+                            },
+                            "uuid": "a92b3c03-99b3-4918-8efa-be1e07bbe055"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                }
+            ]
+        }
+    ],
+    "source": "underwaterCom.kicad_sch"
+}
