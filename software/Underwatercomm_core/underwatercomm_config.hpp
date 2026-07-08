@@ -30,7 +30,7 @@
  *   3. DMA=1, FFT=1: ADC raw DMA + frequency analysis.
  */
 #ifndef UNDERWATERCOMM_ENABLE_RX_DMA
-#define UNDERWATERCOMM_ENABLE_RX_DMA 0
+#define UNDERWATERCOMM_ENABLE_RX_DMA 1
 #endif
 
 /*
@@ -41,6 +41,29 @@
  */
 #ifndef UNDERWATERCOMM_ENABLE_RX_FFT
 #define UNDERWATERCOMM_ENABLE_RX_FFT 0
+#endif
+
+/*
+ * RX Goertzel switch.
+ *
+ * Goertzel is safer for first communication tests than a full FFT because it
+ * measures only the frequency bins we care about and does not depend on
+ * CMSIS-DSP. Keep this enabled for 75 kHz link bring-up.
+ */
+#ifndef UNDERWATERCOMM_ENABLE_RX_GOERTZEL
+#define UNDERWATERCOMM_ENABLE_RX_GOERTZEL 1
+#endif
+
+/*
+ * RX Goertzel sweep switch.
+ *
+ * 0: measure only the exact 75 kHz target bin.
+ * 1: also sweep a small band around 75 kHz and report the strongest bin as
+ *    dominant_frequency_hz. This gives a simple frequency estimate without
+ *    enabling the full FFT path that currently causes HardFault.
+ */
+#ifndef UNDERWATERCOMM_ENABLE_RX_GOERTZEL_SWEEP
+#define UNDERWATERCOMM_ENABLE_RX_GOERTZEL_SWEEP 1
 #endif
 
 #endif /* UNDERWATERCOMM_CORE_UNDERWATERCOMM_CONFIG_HPP */

@@ -11,7 +11,7 @@ constexpr uint32_t TX_OUTPUT = HRTIM_OUTPUT_TA1;
 constexpr uint32_t TX_PERIOD_TICKS = 36267U;
 
 // Keep the bring-up duty low to reduce stress on the power stage and matching network.
-constexpr uint32_t TX_DUTY_PERCENT = 5U;
+constexpr uint32_t TX_DUTY_PERCENT = 50U;
 constexpr uint32_t TX_COMPARE_TICKS =
     ((TX_PERIOD_TICKS * TX_DUTY_PERCENT) + 50U) / 100U;
 

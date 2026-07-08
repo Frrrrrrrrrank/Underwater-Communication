@@ -6,6 +6,51 @@
 
 extern "C" {
 #include "stm32g4xx_hal.h"
+
+// Debug array size for the Goertzel sweep around the 75 kHz carrier.
+// Current sweep points are 70, 71, 72, ... 80 kHz.
+#define UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT 11U
+
+/*
+ * Debugger-visible RX state.
+ *
+ * Watch g_underwatercomm_rx_debug in STM32CubeIDE/Ozone/J-Link while RX raw
+ * mode is running. If ADC DMA is working, half/full callback counters should
+ * keep increasing and min/max/average should reflect the PB11 ADC input.
+ *
+ * Frequency analysis fields:
+ *   target_*   : exact 75 kHz detector result.
+ *   dominant_* : strongest point in the small Goertzel sweep.
+ *   sweep_*[]  : per-frequency strengths from 70 kHz to 80 kHz.
+ */
+typedef struct {
+  uint32_t started;
+  uint32_t sample_rate_hz;
+  uint32_t raw_buffer_address;
+  uint32_t raw_buffer_length;
+  uint32_t half_callback_count;
+  uint32_t full_callback_count;
+  uint32_t processed_block_count;
+  uint16_t first_raw;
+  uint16_t last_raw;
+  uint16_t min_raw;
+  uint16_t max_raw;
+  float average_raw;
+  float dominant_frequency_hz;
+  float dominant_magnitude;
+  float dominant_power;
+  float target_frequency_hz;
+  float target_magnitude;
+  float target_power;
+  uint32_t sweep_bin_count;
+  uint32_t sweep_frequency_hz[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
+  float sweep_magnitude[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
+  float sweep_power[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
+  uint8_t dma_overrun;
+  uint8_t has_result;
+} UnderwaterComm_RxDebugData;
+
+extern volatile UnderwaterComm_RxDebugData g_underwatercomm_rx_debug;
 }
 
 namespace underwatercomm {
@@ -39,7 +84,8 @@ class RxDriver final {
   // Analyze one ready DMA half-buffer, if available. Call from the main loop.
   static void Process();
 
-  // Copy out the most recent FFT result for debugger/UI/telemetry use.
+  // Copy out the most recent analysis result for debugger/UI/telemetry use.
+  // With FFT disabled this result comes from the Goertzel detector instead.
   static bool GetLatestResult(RxAnalysisResult *result);
 
   // Raw circular DMA buffer. It is updated continuously by DMA.
