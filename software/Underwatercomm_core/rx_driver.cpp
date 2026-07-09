@@ -41,6 +41,12 @@ constexpr uint32_t GOERTZEL_SWEEP_BIN_COUNT =
 static_assert(GOERTZEL_SWEEP_BIN_COUNT ==
                   UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT,
               "RX debug sweep array size must match Goertzel sweep bins");
+
+// First-order smoothing for the Goertzel sweep debug values:
+//   filtered = filtered + alpha * (new_value - filtered)
+// A value near 0.2 keeps the display steady while still reacting within a few
+// analysis frames. Raise it for faster response; lower it for calmer display.
+constexpr float SWEEP_FILTER_ALPHA = 0.20F;
 #endif
 #endif
 
@@ -83,7 +89,9 @@ RxAnalysisResult g_latest_result = {};
 
 #if UNDERWATERCOMM_ENABLE_RX_GOERTZEL && UNDERWATERCOMM_ENABLE_RX_GOERTZEL_SWEEP
 float g_goertzel_sweep_coefficients[GOERTZEL_SWEEP_BIN_COUNT];
+float g_filtered_sweep_power[GOERTZEL_SWEEP_BIN_COUNT];
 bool g_goertzel_sweep_ready = false;
+bool g_sweep_filter_has_history = false;
 #endif
 
 #if UNDERWATERCOMM_ENABLE_RX_FFT
@@ -225,6 +233,19 @@ void PrepareGoertzelSweep() {
 
   g_goertzel_sweep_ready = true;
 }
+
+float UpdateFilteredSweepPower(uint32_t index, float new_power) {
+  if (!g_sweep_filter_has_history) {
+    g_filtered_sweep_power[index] = new_power;
+    return new_power;
+  }
+
+  const float previous_power = g_filtered_sweep_power[index];
+  const float filtered_power =
+      previous_power + (SWEEP_FILTER_ALPHA * (new_power - previous_power));
+  g_filtered_sweep_power[index] = filtered_power;
+  return filtered_power;
+}
 #endif
 #endif
 
@@ -325,17 +346,29 @@ void AnalyzeBlock(const volatile uint16_t *samples, bool dma_overrun) {
   // Sweep only the small band around the expected transducer resonance. This is
   // not a full spectrum analyzer, but it is good enough to see whether the
   // strongest received tone is near the 75 kHz carrier.
+  float filtered_dominant_frequency_hz = GOERTZEL_TARGET_FREQUENCY_HZ;
+  float filtered_dominant_power = target_power;
+  float filtered_dominant_magnitude = target_magnitude;
+
   g_underwatercomm_rx_debug.sweep_bin_count = GOERTZEL_SWEEP_BIN_COUNT;
 
   for (uint32_t i = 0U; i < GOERTZEL_SWEEP_BIN_COUNT; ++i) {
     const float sweep_power = CalculateGoertzelPower(
         samples, average_raw, g_goertzel_sweep_coefficients[i]);
     const float sweep_magnitude = GoertzelMagnitudeFromPower(sweep_power);
+    const float filtered_sweep_power =
+        UpdateFilteredSweepPower(i, sweep_power);
+    const float filtered_sweep_magnitude =
+        GoertzelMagnitudeFromPower(filtered_sweep_power);
 
     g_underwatercomm_rx_debug.sweep_frequency_hz[i] =
         GoertzelSweepFrequencyForIndex(i);
     g_underwatercomm_rx_debug.sweep_power[i] = sweep_power;
     g_underwatercomm_rx_debug.sweep_magnitude[i] = sweep_magnitude;
+    g_underwatercomm_rx_debug.filtered_sweep_power[i] =
+        filtered_sweep_power;
+    g_underwatercomm_rx_debug.filtered_sweep_magnitude[i] =
+        filtered_sweep_magnitude;
 
     if (sweep_power > dominant_power) {
       dominant_power = sweep_power;
@@ -343,7 +376,16 @@ void AnalyzeBlock(const volatile uint16_t *samples, bool dma_overrun) {
           static_cast<float>(GoertzelSweepFrequencyForIndex(i));
       dominant_magnitude = sweep_magnitude;
     }
+
+    if (filtered_sweep_power > filtered_dominant_power) {
+      filtered_dominant_power = filtered_sweep_power;
+      filtered_dominant_frequency_hz =
+          static_cast<float>(GoertzelSweepFrequencyForIndex(i));
+      filtered_dominant_magnitude = filtered_sweep_magnitude;
+    }
   }
+
+  g_sweep_filter_has_history = true;
 #endif
 
   g_latest_result.dominant_frequency_hz = dominant_frequency_hz;
@@ -365,6 +407,19 @@ void AnalyzeBlock(const volatile uint16_t *samples, bool dma_overrun) {
       g_latest_result.dominant_frequency_hz;
   g_underwatercomm_rx_debug.dominant_magnitude =
       g_latest_result.dominant_magnitude;
+#if UNDERWATERCOMM_ENABLE_RX_GOERTZEL && UNDERWATERCOMM_ENABLE_RX_GOERTZEL_SWEEP
+  g_underwatercomm_rx_debug.filtered_dominant_frequency_hz =
+      filtered_dominant_frequency_hz;
+  g_underwatercomm_rx_debug.filtered_dominant_magnitude =
+      filtered_dominant_magnitude;
+  g_underwatercomm_rx_debug.filtered_dominant_power = filtered_dominant_power;
+#else
+  g_underwatercomm_rx_debug.filtered_dominant_frequency_hz =
+      g_latest_result.dominant_frequency_hz;
+  g_underwatercomm_rx_debug.filtered_dominant_magnitude =
+      g_latest_result.dominant_magnitude;
+  g_underwatercomm_rx_debug.filtered_dominant_power = 0.0F;
+#endif
   g_underwatercomm_rx_debug.target_frequency_hz =
       g_latest_result.target_frequency_hz;
   g_underwatercomm_rx_debug.target_magnitude = g_latest_result.target_magnitude;

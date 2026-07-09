@@ -19,9 +19,11 @@ extern "C" {
  * keep increasing and min/max/average should reflect the PB11 ADC input.
  *
  * Frequency analysis fields:
- *   target_*   : exact 75 kHz detector result.
- *   dominant_* : strongest point in the small Goertzel sweep.
- *   sweep_*[]  : per-frequency strengths from 70 kHz to 80 kHz.
+ *   target_*          : exact 75 kHz detector result.
+ *   dominant_*        : strongest point in the current Goertzel sweep frame.
+ *   filtered_dominant : strongest point after first-order sweep smoothing.
+ *   sweep_*[]         : per-frequency strengths from 70 kHz to 80 kHz.
+ *   filtered_sweep_*[]: smoothed per-frequency strengths for stable debug.
  */
 typedef struct {
   uint32_t started;
@@ -39,6 +41,9 @@ typedef struct {
   float dominant_frequency_hz;
   float dominant_magnitude;
   float dominant_power;
+  float filtered_dominant_frequency_hz;
+  float filtered_dominant_magnitude;
+  float filtered_dominant_power;
   float target_frequency_hz;
   float target_magnitude;
   float target_power;
@@ -46,6 +51,8 @@ typedef struct {
   uint32_t sweep_frequency_hz[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
   float sweep_magnitude[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
   float sweep_power[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
+  float filtered_sweep_magnitude[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
+  float filtered_sweep_power[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
   uint8_t dma_overrun;
   uint8_t has_result;
 } UnderwaterComm_RxDebugData;
