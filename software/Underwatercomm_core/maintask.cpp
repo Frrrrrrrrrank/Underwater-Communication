@@ -1,6 +1,8 @@
 #include "maintask.hpp"
 
 #include "Buzzer.hpp"
+#include "fsk_decoder.hpp"
+#include "fsk_encoder.hpp"
 #include "rx_driver.hpp"
 #include "tx_driver.hpp"
 #include "underwatercomm_config.hpp"
@@ -33,6 +35,12 @@ bool EnterRxMode() {
     g_state = MainTaskState::FAULT;
     return false;
   }
+
+  if (!underwatercomm::FskDecoder::Init()) {
+    (void)underwatercomm::RxDriver::Stop();
+    g_state = MainTaskState::FAULT;
+    return false;
+  }
 #endif
 
   Drivers::Buzzer::playRxBootPattern();
@@ -45,12 +53,22 @@ bool EnterRxMode() {
 bool EnterTxMode() {
   // Half-duplex rule: stop ADC DMA before TX. This avoids DMA callbacks and FFT
   // work while the power stage is producing a large local signal.
+  underwatercomm::FskDecoder::Stop();
   (void)underwatercomm::RxDriver::Stop();
 
+#if UNDERWATERCOMM_TX_TASK == UNDERWATERCOMM_TX_TASK_FSK_ENCODER
+  if (!underwatercomm::FskEncoder::Init(&hhrtim1)) {
+    g_state = MainTaskState::FAULT;
+    return false;
+  }
+#elif UNDERWATERCOMM_TX_TASK == UNDERWATERCOMM_TX_TASK_ALTERNATING_TEST
   if (!underwatercomm::TxDriver::StartDefaultBurst(&hhrtim1)) {
     g_state = MainTaskState::FAULT;
     return false;
   }
+#else
+#error "Unsupported UNDERWATERCOMM_TX_TASK selection"
+#endif
 
   Drivers::Buzzer::playTxBootPattern();
   g_state = MainTaskState::TX_RUNNING;
@@ -81,11 +99,16 @@ extern "C" void UnderwaterComm_MainTask_Run(void) {
     case MainTaskState::RX_RUNNING:
 #if UNDERWATERCOMM_ENABLE_RX_DMA
       underwatercomm::RxDriver::Process();
+      underwatercomm::FskDecoder::Process();
 #endif
       break;
 
     case MainTaskState::TX_RUNNING:
+#if UNDERWATERCOMM_TX_TASK == UNDERWATERCOMM_TX_TASK_FSK_ENCODER
+      underwatercomm::FskEncoder::Process();
+#elif UNDERWATERCOMM_TX_TASK == UNDERWATERCOMM_TX_TASK_ALTERNATING_TEST
       underwatercomm::TxDriver::Process(&hhrtim1);
+#endif
       break;
 
     case MainTaskState::STARTING:

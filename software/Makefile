@@ -77,6 +77,8 @@ Core/Src/usart.c
 # C++ sources
 CPP_SOURCES =  \
 underwatercomm_core/maintask.cpp \
+underwatercomm_core/fsk_decoder.cpp \
+underwatercomm_core/fsk_encoder.cpp \
 underwatercomm_core/rx_driver.cpp \
 underwatercomm_core/tx_driver.cpp
 

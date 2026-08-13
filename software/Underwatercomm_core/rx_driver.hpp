@@ -24,6 +24,7 @@ extern "C" {
  *   filtered_dominant : strongest point after first-order sweep smoothing.
  *   sweep_*[]         : per-frequency strengths from 70 kHz to 80 kHz.
  *   filtered_sweep_*[]: smoothed per-frequency strengths for stable debug.
+ *   low/high_*        : configured TX low/high FSK comparison values.
  */
 typedef struct {
   uint32_t started;
@@ -47,6 +48,22 @@ typedef struct {
   float target_frequency_hz;
   float target_magnitude;
   float target_power;
+  float low_frequency_hz;
+  float high_frequency_hz;
+  float low_magnitude;
+  float high_magnitude;
+  float low_power;
+  float high_power;
+  float weighted_low_power;
+  float weighted_high_power;
+  float filtered_low_magnitude;
+  float filtered_high_magnitude;
+  float filtered_low_power;
+  float filtered_high_power;
+  float filtered_weighted_low_power;
+  float filtered_weighted_high_power;
+  float fsk_score;
+  float filtered_fsk_score;
   uint32_t sweep_bin_count;
   uint32_t sweep_frequency_hz[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
   float sweep_magnitude[UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT];
@@ -73,6 +90,9 @@ struct RxAnalysisResult {
   float dominant_magnitude;
   float target_frequency_hz;
   float target_magnitude;
+  float weighted_low_power;
+  float weighted_high_power;
+  float fsk_score;
   bool dma_overrun;
 };
 

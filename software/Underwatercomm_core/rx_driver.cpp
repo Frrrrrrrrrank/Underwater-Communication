@@ -31,22 +31,56 @@ constexpr float GOERTZEL_TARGET_COEFFICIENT = 1.1755705046F;
 // transducer are both centered near 75 kHz. The 1 kHz step is intentionally
 // coarse: it gives a useful frequency estimate without burning as much CPU as
 // a full FFT on every DMA half-buffer.
-constexpr uint32_t GOERTZEL_SWEEP_START_HZ = 70000U;
-constexpr uint32_t GOERTZEL_SWEEP_STOP_HZ = 80000U;
-constexpr uint32_t GOERTZEL_SWEEP_STEP_HZ = 1000U;
+constexpr uint32_t GOERTZEL_SWEEP_START_HZ =
+    UNDERWATERCOMM_RX_SWEEP_START_HZ;
+constexpr uint32_t GOERTZEL_SWEEP_STOP_HZ = UNDERWATERCOMM_RX_SWEEP_STOP_HZ;
+constexpr uint32_t GOERTZEL_SWEEP_STEP_HZ = UNDERWATERCOMM_RX_SWEEP_STEP_HZ;
 constexpr uint32_t GOERTZEL_SWEEP_BIN_COUNT =
     ((GOERTZEL_SWEEP_STOP_HZ - GOERTZEL_SWEEP_START_HZ) /
      GOERTZEL_SWEEP_STEP_HZ) +
     1U;
+constexpr uint32_t FSK_LOW_FREQUENCY_HZ =
+    UNDERWATERCOMM_TX_LOW_FREQUENCY_HZ;
+constexpr uint32_t FSK_HIGH_FREQUENCY_HZ =
+    UNDERWATERCOMM_TX_HIGH_FREQUENCY_HZ;
+constexpr float FSK_LOW_POWER_WEIGHT =
+    UNDERWATERCOMM_RX_FSK_LOW_POWER_WEIGHT;
+constexpr float FSK_HIGH_POWER_WEIGHT =
+    UNDERWATERCOMM_RX_FSK_HIGH_POWER_WEIGHT;
+constexpr uint32_t FSK_LOW_SWEEP_INDEX =
+    (FSK_LOW_FREQUENCY_HZ - GOERTZEL_SWEEP_START_HZ) /
+    GOERTZEL_SWEEP_STEP_HZ;
+constexpr uint32_t FSK_HIGH_SWEEP_INDEX =
+    (FSK_HIGH_FREQUENCY_HZ - GOERTZEL_SWEEP_START_HZ) /
+    GOERTZEL_SWEEP_STEP_HZ;
+constexpr float FSK_SCORE_EPSILON = 1.0F;
 static_assert(GOERTZEL_SWEEP_BIN_COUNT ==
                   UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT,
               "RX debug sweep array size must match Goertzel sweep bins");
+static_assert(GOERTZEL_SWEEP_STEP_HZ > 0U,
+              "RX Goertzel sweep step must be non-zero");
+static_assert(GOERTZEL_SWEEP_STOP_HZ >= GOERTZEL_SWEEP_START_HZ,
+              "RX Goertzel sweep stop must be >= start");
+static_assert(FSK_LOW_FREQUENCY_HZ >= GOERTZEL_SWEEP_START_HZ,
+              "FSK low frequency must be >= RX sweep start");
+static_assert(FSK_HIGH_FREQUENCY_HZ >= GOERTZEL_SWEEP_START_HZ,
+              "FSK high frequency must be >= RX sweep start");
+static_assert(FSK_LOW_SWEEP_INDEX < GOERTZEL_SWEEP_BIN_COUNT,
+              "FSK low frequency must be inside the Goertzel sweep");
+static_assert(FSK_HIGH_SWEEP_INDEX < GOERTZEL_SWEEP_BIN_COUNT,
+              "FSK high frequency must be inside the Goertzel sweep");
+static_assert(((FSK_LOW_FREQUENCY_HZ - GOERTZEL_SWEEP_START_HZ) %
+               GOERTZEL_SWEEP_STEP_HZ) == 0U,
+              "FSK low frequency must align to an RX sweep bin");
+static_assert(((FSK_HIGH_FREQUENCY_HZ - GOERTZEL_SWEEP_START_HZ) %
+               GOERTZEL_SWEEP_STEP_HZ) == 0U,
+              "FSK high frequency must align to an RX sweep bin");
 
 // First-order smoothing for the Goertzel sweep debug values:
 //   filtered = filtered + alpha * (new_value - filtered)
 // A value near 0.2 keeps the display steady while still reacting within a few
 // analysis frames. Raise it for faster response; lower it for calmer display.
-constexpr float SWEEP_FILTER_ALPHA = 0.20F;
+constexpr float SWEEP_FILTER_ALPHA = UNDERWATERCOMM_RX_SWEEP_FILTER_ALPHA;
 #endif
 #endif
 
@@ -277,6 +311,9 @@ void AnalyzeBlock(const volatile uint16_t *samples, bool dma_overrun) {
   g_latest_result.min_raw = static_cast<uint16_t>(min_raw);
   g_latest_result.max_raw = static_cast<uint16_t>(max_raw);
   g_latest_result.average_raw = average_raw;
+  g_latest_result.weighted_low_power = 0.0F;
+  g_latest_result.weighted_high_power = 0.0F;
+  g_latest_result.fsk_score = 0.0F;
 
 #if UNDERWATERCOMM_ENABLE_RX_FFT
   // Remove DC before FFT. The receiver amplifier biases the ADC signal, and a
@@ -386,6 +423,64 @@ void AnalyzeBlock(const volatile uint16_t *samples, bool dma_overrun) {
   }
 
   g_sweep_filter_has_history = true;
+
+  const float low_power =
+      g_underwatercomm_rx_debug.sweep_power[FSK_LOW_SWEEP_INDEX];
+  const float high_power =
+      g_underwatercomm_rx_debug.sweep_power[FSK_HIGH_SWEEP_INDEX];
+  const float filtered_low_power =
+      g_underwatercomm_rx_debug.filtered_sweep_power[FSK_LOW_SWEEP_INDEX];
+  const float filtered_high_power =
+      g_underwatercomm_rx_debug.filtered_sweep_power[FSK_HIGH_SWEEP_INDEX];
+  const float weighted_low_power = low_power * FSK_LOW_POWER_WEIGHT;
+  const float weighted_high_power = high_power * FSK_HIGH_POWER_WEIGHT;
+  const float filtered_weighted_low_power =
+      filtered_low_power * FSK_LOW_POWER_WEIGHT;
+  const float filtered_weighted_high_power =
+      filtered_high_power * FSK_HIGH_POWER_WEIGHT;
+  const float fsk_power_sum =
+      weighted_low_power + weighted_high_power + FSK_SCORE_EPSILON;
+  const float filtered_fsk_power_sum =
+      filtered_weighted_low_power + filtered_weighted_high_power +
+      FSK_SCORE_EPSILON;
+
+  // FSK score is easier to watch than two raw powers:
+  //   negative -> the configured low TX frequency is stronger
+  //   positive -> the configured high TX frequency is stronger
+  //   near zero -> ambiguous or no strong received tone
+  g_underwatercomm_rx_debug.low_frequency_hz =
+      static_cast<float>(FSK_LOW_FREQUENCY_HZ);
+  g_underwatercomm_rx_debug.high_frequency_hz =
+      static_cast<float>(FSK_HIGH_FREQUENCY_HZ);
+  g_underwatercomm_rx_debug.low_power = low_power;
+  g_underwatercomm_rx_debug.high_power = high_power;
+  g_underwatercomm_rx_debug.low_magnitude =
+      g_underwatercomm_rx_debug.sweep_magnitude[FSK_LOW_SWEEP_INDEX];
+  g_underwatercomm_rx_debug.high_magnitude =
+      g_underwatercomm_rx_debug.sweep_magnitude[FSK_HIGH_SWEEP_INDEX];
+  g_underwatercomm_rx_debug.weighted_low_power = weighted_low_power;
+  g_underwatercomm_rx_debug.weighted_high_power = weighted_high_power;
+  g_underwatercomm_rx_debug.filtered_low_power = filtered_low_power;
+  g_underwatercomm_rx_debug.filtered_high_power = filtered_high_power;
+  g_underwatercomm_rx_debug.filtered_low_magnitude =
+      g_underwatercomm_rx_debug.filtered_sweep_magnitude[FSK_LOW_SWEEP_INDEX];
+  g_underwatercomm_rx_debug.filtered_high_magnitude =
+      g_underwatercomm_rx_debug.filtered_sweep_magnitude[FSK_HIGH_SWEEP_INDEX];
+  g_underwatercomm_rx_debug.filtered_weighted_low_power =
+      filtered_weighted_low_power;
+  g_underwatercomm_rx_debug.filtered_weighted_high_power =
+      filtered_weighted_high_power;
+  g_underwatercomm_rx_debug.fsk_score =
+      (weighted_high_power - weighted_low_power) / fsk_power_sum;
+  g_underwatercomm_rx_debug.filtered_fsk_score =
+      (filtered_weighted_high_power - filtered_weighted_low_power) /
+      filtered_fsk_power_sum;
+
+  // The decoder uses instantaneous values. The filtered debug values react
+  // too slowly for a 1 ms tone inside each 20 ms symbol interval.
+  g_latest_result.weighted_low_power = weighted_low_power;
+  g_latest_result.weighted_high_power = weighted_high_power;
+  g_latest_result.fsk_score = g_underwatercomm_rx_debug.fsk_score;
 #endif
 
   g_latest_result.dominant_frequency_hz = dominant_frequency_hz;
@@ -457,16 +552,43 @@ void ResetDebugData() {
   g_underwatercomm_rx_debug.dominant_frequency_hz = 0.0F;
   g_underwatercomm_rx_debug.dominant_magnitude = 0.0F;
   g_underwatercomm_rx_debug.dominant_power = 0.0F;
+  g_underwatercomm_rx_debug.filtered_dominant_frequency_hz = 0.0F;
+  g_underwatercomm_rx_debug.filtered_dominant_magnitude = 0.0F;
+  g_underwatercomm_rx_debug.filtered_dominant_power = 0.0F;
   g_underwatercomm_rx_debug.target_frequency_hz =
       static_cast<float>(TARGET_FREQUENCY_HZ);
   g_underwatercomm_rx_debug.target_magnitude = 0.0F;
   g_underwatercomm_rx_debug.target_power = 0.0F;
+  g_underwatercomm_rx_debug.low_frequency_hz = 0.0F;
+  g_underwatercomm_rx_debug.high_frequency_hz = 0.0F;
+  g_underwatercomm_rx_debug.low_magnitude = 0.0F;
+  g_underwatercomm_rx_debug.high_magnitude = 0.0F;
+  g_underwatercomm_rx_debug.low_power = 0.0F;
+  g_underwatercomm_rx_debug.high_power = 0.0F;
+  g_underwatercomm_rx_debug.weighted_low_power = 0.0F;
+  g_underwatercomm_rx_debug.weighted_high_power = 0.0F;
+  g_underwatercomm_rx_debug.filtered_low_magnitude = 0.0F;
+  g_underwatercomm_rx_debug.filtered_high_magnitude = 0.0F;
+  g_underwatercomm_rx_debug.filtered_low_power = 0.0F;
+  g_underwatercomm_rx_debug.filtered_high_power = 0.0F;
+  g_underwatercomm_rx_debug.filtered_weighted_low_power = 0.0F;
+  g_underwatercomm_rx_debug.filtered_weighted_high_power = 0.0F;
+  g_underwatercomm_rx_debug.fsk_score = 0.0F;
+  g_underwatercomm_rx_debug.filtered_fsk_score = 0.0F;
   g_underwatercomm_rx_debug.sweep_bin_count = 0U;
   for (uint32_t i = 0U; i < UNDERWATERCOMM_RX_DEBUG_SWEEP_BIN_COUNT; ++i) {
     g_underwatercomm_rx_debug.sweep_frequency_hz[i] = 0U;
     g_underwatercomm_rx_debug.sweep_magnitude[i] = 0.0F;
     g_underwatercomm_rx_debug.sweep_power[i] = 0.0F;
+    g_underwatercomm_rx_debug.filtered_sweep_magnitude[i] = 0.0F;
+    g_underwatercomm_rx_debug.filtered_sweep_power[i] = 0.0F;
+#if UNDERWATERCOMM_ENABLE_RX_GOERTZEL && UNDERWATERCOMM_ENABLE_RX_GOERTZEL_SWEEP
+    g_filtered_sweep_power[i] = 0.0F;
+#endif
   }
+#if UNDERWATERCOMM_ENABLE_RX_GOERTZEL && UNDERWATERCOMM_ENABLE_RX_GOERTZEL_SWEEP
+  g_sweep_filter_has_history = false;
+#endif
   g_underwatercomm_rx_debug.dma_overrun = 0U;
   g_underwatercomm_rx_debug.has_result = 0U;
 }
